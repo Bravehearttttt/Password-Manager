@@ -1,16 +1,21 @@
 from pathlib import Path
-
+from cryptography.fernet import Fernet
 path = Path("passwords/passwords.log")
-pwd = input("What is the master password")
-# def view():
-#     with open("password.txt","r") as file:
+
+
+def view():
+    with open(path, "r") as file:
+        for line in file.readlines():
+            data = line.rsplit()
+            user, passw = line.split("|")
+            print(f"UserName:= {user} , Password:= {passw}")
 
 
 def add():
     name = input("Account Name: ")
     pwd = input("Password: ")
     with open(path, "a") as file:
-        file.write(f"{name}|{pwd} ")
+        file.write(f"{name}|{pwd} \n")
 
 
 while True:
